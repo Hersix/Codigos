@@ -1,0 +1,54 @@
+package jungler.timer;
+
+import jungler.timer.R.id;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
+		final TextView Texto = (TextView) findViewById(R.id.textView1);
+		
+		
+		ImageView Start = (ImageView) findViewById(R.id.imageView1);
+		Start.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				new CountDownTimer(30000, 1000) {
+
+				     @Override
+					public void onTick(long millisUntilFinished) {
+				         Texto.setText("" + millisUntilFinished / 1000);
+				     }
+
+				     @Override
+					public void onFinish() {
+				         Texto.setText("");
+				     }
+				  }.start();
+			}});
+	
+	
+	
+	
+	
+	
+	}
+
+	
+
+}
